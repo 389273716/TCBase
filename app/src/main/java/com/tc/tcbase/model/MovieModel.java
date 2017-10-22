@@ -7,6 +7,8 @@ import com.tc.tcbase.entity.res.MovieRes;
 import java.util.List;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MovieModel {
 
@@ -30,8 +32,8 @@ public class MovieModel {
      */
     public void getPlayingMovie(int count, HttpSubscriber<List<MovieRes>> subscriber) {
         Observable observable = RetrofitUtil.getApiService().getPlayingMovie(count);//如果需要嵌套请求的话，则在后面加入flatMap进行处理
-        observable.subscribe(subscriber);
-
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
 
     /**
@@ -42,11 +44,9 @@ public class MovieModel {
      */
     public void getCommingMovie(int count, HttpSubscriber<List<MovieRes>> subscriber ) {
         Observable observable = RetrofitUtil.getApiService().getCommingMovie(count);
-        observable.subscribe(subscriber);
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
-
-
-
 
 
 }

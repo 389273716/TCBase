@@ -138,11 +138,11 @@ public class LogUtil {
     }
 
     public static void json(Object entity) {
-        printLog(JSON, null, new Gson().toJson(entity));
+        json(new Gson().toJson(entity));
     }
 
     public static void json(String tag, Object entity) {
-        printLog(JSON, tag, new Gson().toJson(entity));
+        json(tag,new Gson().toJson(entity));
     }
 
     public static void json(String jsonFormat) {
