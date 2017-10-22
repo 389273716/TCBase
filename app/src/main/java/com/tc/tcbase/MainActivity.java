@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNext(String title, List<MovieRes> list) {
                 ToastUtil.show(new Gson().toJson(list));
                 LogUtil.i(TAG, "获取" + title + "成功");
-                LogUtil.e(new Gson().toJson(list));
+                LogUtil.json(new Gson().toJson(list));
             }
 
             @Override
